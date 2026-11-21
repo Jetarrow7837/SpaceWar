@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://cve4lm6negv7q"]
 
 [ext_resource type="Texture2D" uid="uid://j6t4fluyc0cr" path="res://Assets/Blue_Nebula_01-512x512.png" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://df120ae1hkj01" path="res://Scripts/Background.gd" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://bx8aybosm7dul" path="res://Scenes/player.tscn" id="2_qxrlw"]
 
 [node name="Game" type="Node2D" unique_id=271560680]
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1621205646]
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1621205646 node_paths=PackedStringArray("player")]
 repeat_size = Vector2(512, 512)
 repeat_times = 8
+script = ExtResource("1_wrm1d")
+player = NodePath("../Player")
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1475138155]
 texture = ExtResource("1_ebmjs")
 
 [node name="Player" parent="." unique_id=1842046669 instance=ExtResource("2_qxrlw")]
-position = Vector2(542, 377)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1483102107]
-position = Vector2(2, 0)
+position = Vector2(208, 193)

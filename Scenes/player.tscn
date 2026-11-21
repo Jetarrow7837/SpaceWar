@@ -42,14 +42,23 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3rms1"]
 radius = 9.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1842046669]
+[node name="Player" type="CharacterBody2D" unique_id=1842046669 node_paths=PackedStringArray("muzzle")]
 motion_mode = 1
 script = ExtResource("1_cvnsp")
+muzzle = NodePath("Muzzle")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2074719935]
 sprite_frames = SubResource("SpriteFrames_dhhex")
-frame_progress = 0.12131512
+autoplay = "default"
+frame_progress = 0.38517436
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075006225]
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_3rms1")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=2087118151]
+position = Vector2(0, -24)
+
+[node name="FireCooldown" type="Timer" parent="." unique_id=227433436]
+wait_time = 0.5
+one_shot = true

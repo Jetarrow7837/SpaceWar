@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b54ooyx7iq7o2"]
+
+[ext_resource type="Script" uid="uid://dmor0wkn6m3x" path="res://Scripts/Bullet.gd" id="1_xjght"]
+
+[sub_resource type="Gradient" id="Gradient_3rms1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u5wol"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7fbtk"]
+width = 4
+height = 8
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_u5wol")
+color_ramp = SubResource("Gradient_3rms1")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dhhex"]
+radius = 2.0
+height = 8.0
+
+[node name="Bullet" type="Area2D" unique_id=463503758]
+script = ExtResource("1_xjght")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=211644304]
+texture = SubResource("NoiseTexture2D_7fbtk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=62056965]
+shape = SubResource("CapsuleShape2D_dhhex")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
