@@ -1,27 +1,37 @@
 [gd_scene format=3 uid="uid://cve4lm6negv7q"]
 
-[ext_resource type="Texture2D" uid="uid://j6t4fluyc0cr" path="res://Assets/Blue_Nebula_01-512x512.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://df120ae1hkj01" path="res://Scripts/Background.gd" id="1_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://dmp4yqdvbtgpy" path="res://Assets/Space Background.png" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://bx8aybosm7dul" path="res://Scenes/player.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://b57sperm8s2gi" path="res://Scenes/invader_spawner.tscn" id="4_3dryh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhhex"]
-size = Vector2(20, 294)
+size = Vector2(20, 286)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
 size = Vector2(498, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wowpa"]
+size = Vector2(41, 286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6g32"]
+size = Vector2(42, 286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
+size = Vector2(483, 14)
+
 [node name="Game" type="Node2D" unique_id=271560680]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1621205646]
-repeat_size = Vector2(512, 512)
-autoscroll = Vector2(0, 100)
+repeat_size = Vector2(1080, 512)
+autoscroll = Vector2(0, 50)
 repeat_times = 8
 script = ExtResource("1_wrm1d")
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1475138155]
-texture = ExtResource("1_ebmjs")
+texture = ExtResource("2_3dryh")
 
 [node name="Player" parent="." unique_id=1842046669 instance=ExtResource("2_qxrlw")]
 position = Vector2(232, 251)
@@ -41,4 +51,32 @@ position = Vector2(239, -10)
 shape = SubResource("RectangleShape2D_hghv2")
 
 [node name="InvaderSpawner" parent="." unique_id=1038029990 instance=ExtResource("4_3dryh")]
-position = Vector2(106, 51)
+
+[node name="Walls" type="Node" parent="." unique_id=1829481554]
+
+[node name="WallLeft" type="Area2D" parent="Walls" unique_id=1897452706]
+collision_mask = 2
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/WallLeft" unique_id=669303154]
+position = Vector2(-0.5, 137)
+shape = SubResource("RectangleShape2D_wowpa")
+debug_color = Color(0.94509804, 0.1254902, 0.49411765, 0.22352941)
+
+[node name="WallRight" type="Area2D" parent="Walls" unique_id=127013898]
+collision_mask = 2
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls/WallRight" unique_id=672599167]
+position = Vector2(481, 137)
+shape = SubResource("RectangleShape2D_i6g32")
+debug_color = Color(0.94509804, 0.1254902, 0.49411765, 0.34117648)
+
+[node name="WallBottom" type="Area2D" parent="Walls" unique_id=1803573745]
+collision_mask = 2
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls/WallBottom" unique_id=243904548]
+position = Vector2(241.5, 275)
+shape = SubResource("RectangleShape2D_3dryh")
+debug_color = Color(0.71929777, 0.47957247, 9.62615e-07, 0.34117648)
+
+[connection signal="body_entered" from="Walls/WallLeft" to="InvaderSpawner" method="_on_wall_left_body_entered"]
+[connection signal="body_entered" from="Walls/WallRight" to="InvaderSpawner" method="_on_wall_right_body_entered"]

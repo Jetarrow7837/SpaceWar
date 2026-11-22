@@ -23,12 +23,12 @@ script = ExtResource("1_xjght")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=211644304]
 texture = SubResource("NoiseTexture2D_7fbtk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=62056965]
-shape = SubResource("RectangleShape2D_xjght")
-
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1798985543]
+[node name="Polygon2D" type="Polygon2D" parent="Sprite2D" unique_id=1798985543]
 polygon = PackedVector2Array(0, -3.5, 1.5, -2, -1.5, -2)
 uv = PackedVector2Array(-2, 1, 33, 41, -36, 42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=62056965]
+shape = SubResource("RectangleShape2D_xjght")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

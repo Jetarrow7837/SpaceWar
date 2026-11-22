@@ -4,3 +4,10 @@
 
 [node name="InvaderSpawner" type="Node2D" unique_id=1038029990]
 script = ExtResource("1_w52gg")
+
+[node name="MovementTimer" type="Timer" parent="." unique_id=1716083075]
+wait_time = 0.7
+autostart = true
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=669480844]
+autostart = true

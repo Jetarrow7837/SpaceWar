@@ -15,14 +15,16 @@ noise = SubResource("FastNoiseLite_1f0kj")
 color_ramp = SubResource("Gradient_afpow")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
-size = Vector2(28, 22)
+size = Vector2(16, 12)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=307545727]
+z_index = 2
+collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_1f0kj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1207797548]
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 texture = SubResource("NoiseTexture2D_hghv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1539880205]
@@ -30,3 +32,4 @@ shape = SubResource("RectangleShape2D_1f0kj")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=1474974042]
 position = Vector2(0, 18)
+gizmo_extents = 5.2

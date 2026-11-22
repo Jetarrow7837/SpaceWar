@@ -4,7 +4,7 @@ class_name Player extends CharacterBody2D
 @onready var fire_cooldown: Timer = $FireCooldown
 
 const FACTION := Global.Faction.PLAYER
-const SPEED = 250.0
+const SPEED = 100.0
 
 
 func _physics_process(_delta: float) -> void:

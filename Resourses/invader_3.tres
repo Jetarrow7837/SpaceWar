@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_mo424")
 sprite = ExtResource("2_mo424")
-width = 10
+width = 5
 points = 300

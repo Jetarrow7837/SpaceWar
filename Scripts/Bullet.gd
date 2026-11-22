@@ -4,14 +4,14 @@ extends Area2D
 const BULLET_SCENE := preload("res://Scenes/bullet.tscn")
 
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
-@export var speed: float = 500.0
+@export var speed: float = 90.0
 @export var lifetime: float = 3.0
 @export var faction: Global.Faction = Global.Faction.PLAYER
 const damage: int = 1
 var health : int = 1
 var direction: Vector2 = Vector2.UP
-
 
 
 static func shoot(pos: Vector2, dir: Vector2 = Vector2.UP, fac: Global.Faction = Global.Faction.PLAYER) -> void:
@@ -22,6 +22,7 @@ static func shoot(pos: Vector2, dir: Vector2 = Vector2.UP, fac: Global.Faction =
 	if parent == null:
 		return
 	parent.add_child(bullet)
+	bullet.face_direction(bullet.sprite_2d , dir.normalized())
 	bullet.modulate = Global.FACTION_COLORS[fac]
 	bullet.global_position = pos
 
@@ -46,6 +47,9 @@ func _on_hit(body: Node) -> void:
 
 func take_damage(dmg):
 	health -= dmg
+func face_direction(sprite: Sprite2D,dir: Vector2) -> void:
+	if dir.y != 0.0:
+		sprite.flip_h = dir.x < 0.0
 
 
 func _on_area_entered(area: Area2D) -> void:

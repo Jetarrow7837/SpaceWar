@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_gptcf")
 sprite = ExtResource("2_cngfu")
-width = 10
+width = 5
 points = 100

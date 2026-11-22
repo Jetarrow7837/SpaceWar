@@ -20,6 +20,8 @@ static var direction := Vector2.RIGHT
 var size_half : int
 var step_timer := 0.0
 
+@onready var muzzle: Marker2D = $Muzzle
+
 
 func _ready() -> void:
 	if config:
@@ -37,7 +39,8 @@ func _physics_process(delta: float) -> void:
 		#position.y += size_half *delta
 		#direction= -direction 
 		
-
+func fire():
+	Bullet.shoot(muzzle.global_position,Vector2.DOWN,FACTION)
 
 func take_damage(damage):
 	health -= damage
