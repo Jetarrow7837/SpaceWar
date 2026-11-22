@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvaderConfig" format=3 uid="uid://chbybwp1bdb74"]
+
+[ext_resource type="Script" uid="uid://dpo1jui5wyd2g" path="res://Resourses/invader_config.gd" id="1_mo424"]
+[ext_resource type="Texture2D" uid="uid://dy3t2ggj5dd1b" path="res://Assets/red.png" id="2_mo424"]
+
+[resource]
+script = ExtResource("1_mo424")
+sprite = ExtResource("2_mo424")
+width = 10
+points = 300

@@ -53,7 +53,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	if area is Bullet:
 		area.take_damage(damage)
-		queue_free()
+		destroy()
 	
 	
 func _on_body_entered(body: Node2D) -> void:
@@ -63,3 +63,12 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	elif body is Player and faction == Global.Faction.ENEMY:
 		body.take_damage(damage)
+		destroy()
+	if body is Enemy and faction == Global.Faction.ENEMY:
+		return
+	elif body is Enemy and faction == Global.Faction.PLAYER:
+		body.take_damage(damage)
+		destroy()
+
+func destroy():
+	queue_free()

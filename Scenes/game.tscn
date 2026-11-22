@@ -3,17 +3,42 @@
 [ext_resource type="Texture2D" uid="uid://j6t4fluyc0cr" path="res://Assets/Blue_Nebula_01-512x512.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://df120ae1hkj01" path="res://Scripts/Background.gd" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://bx8aybosm7dul" path="res://Scenes/player.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://b57sperm8s2gi" path="res://Scenes/invader_spawner.tscn" id="4_3dryh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhhex"]
+size = Vector2(20, 294)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
+size = Vector2(498, 20)
 
 [node name="Game" type="Node2D" unique_id=271560680]
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1621205646 node_paths=PackedStringArray("player")]
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1621205646]
 repeat_size = Vector2(512, 512)
+autoscroll = Vector2(0, 100)
 repeat_times = 8
 script = ExtResource("1_wrm1d")
-player = NodePath("../Player")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1475138155]
 texture = ExtResource("1_ebmjs")
 
 [node name="Player" parent="." unique_id=1842046669 instance=ExtResource("2_qxrlw")]
-position = Vector2(208, 193)
+position = Vector2(232, 251)
+
+[node name="Border" type="StaticBody2D" parent="." unique_id=925051134]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border" unique_id=654226165]
+position = Vector2(-10, 137)
+shape = SubResource("RectangleShape2D_dhhex")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border" unique_id=1138990446]
+position = Vector2(490, 137)
+shape = SubResource("RectangleShape2D_dhhex")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border" unique_id=184573911]
+position = Vector2(239, -10)
+shape = SubResource("RectangleShape2D_hghv2")
+
+[node name="InvaderSpawner" parent="." unique_id=1038029990 instance=ExtResource("4_3dryh")]
+position = Vector2(106, 51)

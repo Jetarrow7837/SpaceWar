@@ -8,15 +8,14 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_u5wol"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7fbtk"]
-width = 4
-height = 8
+width = 2
+height = 4
 generate_mipmaps = false
 noise = SubResource("FastNoiseLite_u5wol")
 color_ramp = SubResource("Gradient_3rms1")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dhhex"]
-radius = 2.0
-height = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjght"]
+size = Vector2(2, 4)
 
 [node name="Bullet" type="Area2D" unique_id=463503758]
 script = ExtResource("1_xjght")
@@ -25,7 +24,11 @@ script = ExtResource("1_xjght")
 texture = SubResource("NoiseTexture2D_7fbtk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=62056965]
-shape = SubResource("CapsuleShape2D_dhhex")
+shape = SubResource("RectangleShape2D_xjght")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1798985543]
+polygon = PackedVector2Array(0, -3.5, 1.5, -2, -1.5, -2)
+uv = PackedVector2Array(-2, 1, 33, 41, -36, 42)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

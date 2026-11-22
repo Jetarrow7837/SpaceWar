@@ -52,12 +52,11 @@ var playing: bool = false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_high_score()
-	
 
 
 
-func _unhandled_input(event: InputEvent) -> void: #Pauses the Game
-	if playing and event.is_action_pressed("Pause"):
+func _unhandled_input(event: InputEvent) -> void: 
+	if playing and event.is_action_pressed("Pause"): #Pauses the Game
 		toggle_pause()
 
 ## Switchs Pause state 

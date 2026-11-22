@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bmhbw0ncepobg"]
+
+[ext_resource type="Script" uid="uid://djh281udkjx67" path="res://Scripts/enemy.gd" id="1_1f0kj"]
+
+[sub_resource type="Gradient" id="Gradient_afpow"]
+colors = PackedColorArray(0.56354046, 0.00079425366, 0.6689886, 1, 0.8235294, 0.29411766, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1f0kj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hghv2"]
+width = 28
+height = 22
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_1f0kj")
+color_ramp = SubResource("Gradient_afpow")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
+size = Vector2(28, 22)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=307545727]
+motion_mode = 1
+script = ExtResource("1_1f0kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1207797548]
+scale = Vector2(0.7, 0.7)
+texture = SubResource("NoiseTexture2D_hghv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1539880205]
+shape = SubResource("RectangleShape2D_1f0kj")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1474974042]
+position = Vector2(0, 18)

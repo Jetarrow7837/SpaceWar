@@ -1,5 +1,5 @@
 extends Parallax2D
-@export var player : Player
+#@export var player : Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,5 +8,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if player:
-		scroll_offset = -player.global_position
+	pass
+	#if player:
+		#scroll_offset = -player.global_position
