@@ -48,8 +48,8 @@ func _on_hit(body: Node) -> void:
 func take_damage(dmg):
 	health -= dmg
 func face_direction(sprite: Sprite2D,dir: Vector2) -> void:
-	if dir.y != 0.0:
-		sprite.flip_h = dir.x < 0.0
+	if dir == Vector2.DOWN:
+		sprite.flip_v = true
 
 
 func _on_area_entered(area: Area2D) -> void:

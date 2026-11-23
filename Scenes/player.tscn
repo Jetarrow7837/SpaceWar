@@ -45,6 +45,15 @@ size = Vector2(10, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(30, 6)
 
+[sub_resource type="Gradient" id="Gradient_cvnsp"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dhhex"]
+gradient = SubResource("Gradient_cvnsp")
+width = 16
+height = 8
+fill_from = Vector2(0.5304348, 0.8652174)
+fill_to = Vector2(0.526087, 0)
+
 [node name="Player" type="CharacterBody2D" unique_id=1842046669 node_paths=PackedStringArray("muzzle")]
 z_index = 3
 motion_mode = 1
@@ -70,3 +79,9 @@ position = Vector2(0, -24)
 [node name="FireCooldown" type="Timer" parent="." unique_id=227433436]
 wait_time = 0.5
 one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=840328358]
+position = Vector2(0, 11)
+color = Color(0.7538439, 0.7218892, 0.3030633, 1)
+energy = 2.4
+texture = SubResource("GradientTexture2D_dhhex")
