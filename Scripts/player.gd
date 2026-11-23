@@ -27,6 +27,7 @@ func take_damage(dmg):
 	lives -= dmg
 	Global.lives_changed.emit(lives)
 	if lives <= 0:
+		Engine.time_scale = 0.5
 		animation_player.play("death")
 		await animation_player.animation_finished
 		Global.game_over.emit()
