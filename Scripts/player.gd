@@ -2,10 +2,12 @@ class_name Player extends CharacterBody2D
 
 @export var muzzle: Marker2D
 @onready var fire_cooldown: Timer = $FireCooldown
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const FACTION := Global.Faction.PLAYER
 const SPEED = 100.0
 
+var lives: int = Global.START_LIVES
 
 func _physics_process(_delta: float) -> void:
 	
@@ -14,7 +16,6 @@ func _physics_process(_delta: float) -> void:
 		fire_cooldown.start()
 	
 	var direction := Input.get_axis("Left", "Right")
-	
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -23,7 +24,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 func take_damage(dmg):
-	Global.lives_changed.emit()
-	
-	
-	
+	lives -= dmg
+	Global.lives_changed.emit(lives)
+	if lives <= 0:
+		animation_player.play("death")
+		await animation_player.animation_finished
+		Global.game_over.emit()

@@ -2,7 +2,7 @@ extends Node
 #region Signals
 signal score_changed(new_score: int)
 signal lives_changed(new_lives: int)
-signal level_changed(new_level: int)
+#signal level_changed(new_level: int)
 signal high_score_changed(new_high_score: int)
 signal game_over
 signal game_started
@@ -22,6 +22,7 @@ const MAIN_MENU_SCENE := "res://main_menu.tscn"   # change to your scenes
 const GAME_SCENE := "uid://cve4lm6negv7q"
 
 #region Variables
+
 var score: int = 0:
 	set(value):
 		score = value
@@ -29,31 +30,51 @@ var score: int = 0:
 		if score > high_score:
 			high_score = score
 
+
 var high_score: int = 0:
 	set(value):
 		high_score = value
 		high_score_changed.emit(high_score)
 
-var lives: int = START_LIVES:
-	set(value):
-		lives = maxi(value, 0)
-		lives_changed.emit(lives)
-		if lives == 0 and playing:
-			pass
 
-var level: int = 1:
-	set(value):
-		level = value
-		level_changed.emit(level)
+#
+#var level: int = 1:
+	#set(value):
+		#level = value
+		#level_changed.emit(level)
 
 var playing: bool = false
 #endregion
 
 func _ready() -> void:
+	lives_changed.connect(update_lives)
+	game_started.connect(start_game)
+	game_over.connect(reset_game)
+	score_changed.connect(update_score)
+	high_score_changed.connect(update_highscore)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_high_score()
 
+func update_lives(new_lives):
+	pass
 
+func update_highscore(new_hscore):
+	high_score = new_hscore
+	_save_high_score()
+
+
+func update_score(scr):
+	score += scr
+	
+func start_game():
+	get_tree().change_scene_to_file(Global.GAME_SCENE)
+
+func reset_game():
+	get_tree().reload_current_scene()
+
+
+#____________________________________________________________________________#
 
 func _unhandled_input(event: InputEvent) -> void: 
 	if playing and event.is_action_pressed("Pause"): #Pauses the Game

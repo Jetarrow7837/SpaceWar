@@ -4,11 +4,9 @@ var config : InvaderConfig
 @onready var sprite: Sprite2D = $Sprite2D
 
 
-var health = 1:
-	set(value):
-		health = value
-		if health <= 0: 
-			queue_free()
+var health = 1
+
+
 const SPEED = 100.0
 const FACTION := Global.Faction.ENEMY
 
@@ -19,6 +17,7 @@ static var direction := Vector2.RIGHT
 
 var size_half : int
 var step_timer := 0.0
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var muzzle: Marker2D = $Muzzle
 
@@ -44,4 +43,6 @@ func fire():
 
 func take_damage(damage):
 	health -= damage
+	if health <= 0: 
+		animation_player.play("death")
 	print(health)
