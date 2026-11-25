@@ -44,5 +44,6 @@ func fire():
 func take_damage(damage):
 	health -= damage
 	if health <= 0: 
+		Global.add_score(config.points)
 		animation_player.play("death")
 	print(health)

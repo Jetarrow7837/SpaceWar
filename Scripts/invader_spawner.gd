@@ -74,3 +74,4 @@ func _on_wall_right_body_entered(body: Node2D) -> void:
 	if body is Enemy and move_dir == 1 :
 		position.y += INVADER_SPEED_Y
 		move_dir = -move_dir
+		
