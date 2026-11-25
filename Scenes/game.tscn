@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cve4lm6negv7q"]
 
+[ext_resource type="Script" uid="uid://dw3ylab04sylm" path="res://Scenes/game.gd" id="1_wowpa"]
 [ext_resource type="Script" uid="uid://df120ae1hkj01" path="res://Scripts/Background.gd" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://dmp4yqdvbtgpy" path="res://Assets/Space Background.png" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://bx8aybosm7dul" path="res://Scenes/player.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://b57sperm8s2gi" path="res://Scenes/invader_spawner.tscn" id="4_3dryh"]
+[ext_resource type="PackedScene" uid="uid://cwt88u85v54jy" path="res://UI/pause_menu.tscn" id="6_i6g32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhhex"]
 size = Vector2(20, 286)
@@ -21,6 +23,7 @@ size = Vector2(42, 286)
 size = Vector2(483, 14)
 
 [node name="Game" type="Node2D" unique_id=271560680]
+script = ExtResource("1_wowpa")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1621205646]
 repeat_size = Vector2(1080, 512)
@@ -77,6 +80,41 @@ collision_mask = 2
 position = Vector2(241.5, 275)
 shape = SubResource("RectangleShape2D_3dryh")
 debug_color = Color(0.71929777, 0.47957247, 9.62615e-07, 0.34117648)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=127271366]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1713909186]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1371086145]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 20
+
+[node name="HighScore" type="Label" parent="CanvasLayer/Control/MarginContainer" unique_id=62923727]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "HighScore:0000"
+
+[node name="Score" type="Label" parent="CanvasLayer/Control/MarginContainer" unique_id=1283083920]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Score: 0000"
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=269589862 instance=ExtResource("6_i6g32")]
 
 [connection signal="body_entered" from="Walls/WallLeft" to="InvaderSpawner" method="_on_wall_left_body_entered"]
 [connection signal="body_entered" from="Walls/WallRight" to="InvaderSpawner" method="_on_wall_right_body_entered"]
